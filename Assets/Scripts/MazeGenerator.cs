@@ -138,6 +138,7 @@ public static class MazeGenerator // maze kan MAX 65535 hebben als width en heig
         return RecursiveBacktracking(maze, width, height, seed);
     }
     
+    // 255x255 (max) = ~15.8KB
     public static byte[] MazeToBytes(Cell[,] maze, byte width, byte height)
     {
         var sb = new StringBuilder();
@@ -157,7 +158,7 @@ public static class MazeGenerator // maze kan MAX 65535 hebben als width en heig
                 }
 
                 // en de onderste muur hebben hebben we ook niet nodig, bespaart weer width bits!
-                if (row != height - 1)
+                if (row != 0)
                 {
                     sb.Append((maze[col, row] & Cell.LowerWall) == Cell.LowerWall ? '1' : '0');
                 }
@@ -197,7 +198,6 @@ public static class MazeGenerator // maze kan MAX 65535 hebben als width en heig
         // eerste byte is width, 2de byte is height
         byte width = Convert.ToByte(binary[..8], 2);
         byte height = Convert.ToByte(binary[8..16], 2);
-        Debug.Log($"w{width} h{height}");
 
         var maze = new Cell[width, height];
 
@@ -216,7 +216,7 @@ public static class MazeGenerator // maze kan MAX 65535 hebben als width en heig
                     index++;
                 }
 
-                if (row != height - 1)
+                if (row != 0)
                 {
                     if (binary[index] == '1')
                     {
