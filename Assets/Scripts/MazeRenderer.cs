@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeRenderer : MonoBehaviour
 {
     [SerializeField] private Transform wallPrefab;
-    [SerializeField] private CameraScaler scaler;
 
     public void Clear()
     {
@@ -18,63 +15,52 @@ public class MazeRenderer : MonoBehaviour
 
     public void Draw(Cell[,] maze, ushort width, ushort height)
     {
-        for (int i = 0; i < width; i++)
+        for (int y = 0; y < height; y++)
         {
-            for (int j = 0; j < height; j++)
+            for (int x = 0; x < width; x++)
             {
-                var cell = maze[i, j];
-                var position = new Vector3(-width * 0.5f + i, 0, -height * 0.5f + j); // centered coords
+                var cell = maze[x, y];
+                var position = new Vector3(x, 0, y);
 
-                if (cell.HasFlag(Cell.RightWall) && i != width - 1)
+                // internal walls
+                if (cell.HasFlag(Cell.RightWall) && x != width - 1)
                 {
-                    var wall = Instantiate(wallPrefab, transform);
-                    wall.position = position + new Vector3(0.5f, 0, 0);
-                    wall.eulerAngles = new Vector3(0, 90, 0);
+                    SpawnWall(position, new Vector3(0.5f, 0, 0), new Vector3(0, 90, 0));
                 }
 
-                if (cell.HasFlag(Cell.LowerWall) && j != 0)
+                if (cell.HasFlag(Cell.LowerWall) && y != 0)
                 {
-                    var wall = Instantiate(wallPrefab, transform);
-                    wall.position = position + new Vector3(0, 0, -0.5f);
-                    wall.eulerAngles = new Vector3(0, 0, 0);
+                    SpawnWall(position, new Vector3(0, 0, -0.5f), new Vector3(0, 0, 0));
                 }
 
-                // EDGE WALLS
-
-                //rechts
-                if (i == width - 1 && j != 0)
+                // edge walls
+                if (x == width - 1 && y != 0)
                 {
-                    var wall = Instantiate(wallPrefab, transform);
-                    wall.position = position + new Vector3(0.5f, 0, 0);
-                    wall.eulerAngles = new Vector3(0, 90, 0);
+                    SpawnWall(position, new Vector3(0.5f, 0, 0), new Vector3(0, 90, 0));
                 }
 
-                //links
-                if (i == 0 && j != height - 1)
+                if (x == 0 && y != height - 1)
                 {
-                    var wall = Instantiate(wallPrefab, transform);
-                    wall.position = position + new Vector3(-0.5f, 0, 0);
-                    wall.eulerAngles = new Vector3(0, 90, 0);
+                    SpawnWall(position, new Vector3(-0.5f, 0, 0), new Vector3(0, 90, 0));
                 }
 
-                // onder
-                if (j == 0)
+                if (y == 0)
                 {
-                    var wall = Instantiate(wallPrefab, transform);
-                    wall.position = position + new Vector3(0, 0, -0.5f);
-                    wall.eulerAngles = new Vector3(0, 0, 0);
+                    SpawnWall(position, new Vector3(0, 0, -0.5f), new Vector3(0, 0, 0));
                 }
 
-                //boven
-                if (j == height - 1)
+                if (y == height - 1)
                 {
-                    var wall = Instantiate(wallPrefab, transform);
-                    wall.position = position + new Vector3(0, 0, 0.5f);
-                    wall.eulerAngles = new Vector3(0, 0, 0);
+                    SpawnWall(position, new Vector3(0, 0, 0.5f), new Vector3(0, 0, 0));
                 }
             }
         }
+    }
 
-        scaler.ScaleCameraToMaze(width, height);
+    private void SpawnWall(Vector3 position, Vector3 offset, Vector3 eulerAngles)
+    {
+        var wall = Instantiate(wallPrefab, transform);
+        wall.position = position + offset;
+        wall.eulerAngles = eulerAngles;
     }
 }
