@@ -7,6 +7,10 @@ public class ArrowBobbing : MonoBehaviour
 
     private void Start()
     {
-        transform.DOLocalMove(transform.localPosition + direction, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        var endValue = transform.localPosition + direction;
+        
+        transform.DOLocalMove(endValue, 0.5f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutSine);
     }
 }
