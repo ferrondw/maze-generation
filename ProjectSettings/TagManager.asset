@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Orbs
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Orbs
+    uniqueID: 4043136323
+    locked: 0
+  - name: Text
+    uniqueID: 316419895
+    locked: 0
+  - name: UI
+    uniqueID: 2669935571
     locked: 0

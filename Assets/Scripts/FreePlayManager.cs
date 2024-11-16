@@ -6,61 +6,85 @@ using UnityEngine.UI;
 
 public class FreePlayManager : MonoBehaviour
 {
-    public ushort width;
-    public ushort height;
+    [SerializeField] private Slider widthSlider;
+    [SerializeField] private Slider heightSlider;
+    [SerializeField] private TMP_Text widthText;
+    [SerializeField] private TMP_Text heightText;
+    [SerializeField] private Transform menu;
+    [SerializeField] private CanvasGroup menuBackdrop;
+    [SerializeField] private Transition transition;
+    [SerializeField] private CameraFollow cameraFollow;
+    [SerializeField] private MazeRenderer mazeRenderer;
+    [SerializeField] private DecorationGenerator decorationGenerator;
+    [SerializeField] private Player player;
 
-    public Slider widthSlider;
-    public Slider heightSlider;
-    public TMP_Text widthText;
-    public TMP_Text heightText;
-    public GameObject menu;
-    
-    [SerializeField] private Material transitionMaterial;
-    private static readonly int Size = Shader.PropertyToID("_Size");
-
-    private MazeRenderer mazeRenderer;
-    private DecorationGenerator decorationGenerator;
-    private Player player;
+    private ushort width;
+    private ushort height;
+    private bool isAnimating;
 
     public void Home()
     {
-        transitionMaterial.DOFloat(0, Size, 0.7f).SetEase(Ease.InOutSine).OnComplete(() => { SceneManager.LoadScene(0); });
+        transition.ToBlack(0, () => { SceneManager.LoadScene(0); });
     }
 
     private void Start()
     {
-        mazeRenderer = FindObjectOfType<MazeRenderer>();
-        decorationGenerator = FindObjectOfType<DecorationGenerator>();
-        player = FindObjectOfType<Player>();
         mazeRenderer.Clear();
-        
-        transitionMaterial.DOFloat(1, Size, 0.7f).SetEase(Ease.InOutSine);
-        
-        onValueChange();
+        isAnimating = false;
+        OnValueChange();
+        SetupLevel();
     }
 
-    public void onValueChange()
+    public void OnValueChange()
     {
         width = (ushort)widthSlider.value;
         height = (ushort)heightSlider.value;
 
-        widthText.text = $"Width: {width}";
-        heightText.text = $"Height: {height}";
+        widthText.text = $"{width}";
+        heightText.text = $"{height}";
     }
 
     public void ToggleMenu()
     {
-        menu.SetActive(!menu.activeSelf);
+        if (isAnimating) return;
+        isAnimating = true;
+
+        var endValue = menu.localScale == Vector3.zero ? 1 : 0;
+
+        player.canMove = endValue == 0;
+        menu.DOScale(endValue, 0.4f).OnComplete(() => { isAnimating = false; });
+        menuBackdrop.DOFade(endValue, 0.3f);
+    }
+
+    public void OpenMenu()
+    {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        player.canMove = false;
+        menu.DOScale(1, 0.4f).OnComplete(() => { isAnimating = false; });
+        menuBackdrop.DOFade(1, 0.3f);
     }
 
     public void Generate()
     {
+        transition.ToBlack(0, SetupLevel);
+    }
+
+    private void SetupLevel()
+    {
         mazeRenderer.Clear();
-        
-        var (maze, path) = MazeGenerator.Generate(width, height, new RecursiveBacktrackingStrategy()); // FIX
-        
+        menu.DOScale(0, 0.4f);
+        menuBackdrop.DOFade(0, 0.3f);
+        player.canMove = true;
+
+        var (maze, path) = MazeGenerator.Generate(width, height, new RecursiveBacktrackingStrategy());
+
         player.SetMaze(maze);
+        cameraFollow.SnapToTarget();
         mazeRenderer.Draw(maze);
         decorationGenerator.Generate(width, height, 20, 3);
+
+        transition.FromBlack(0.1f);
     }
 }

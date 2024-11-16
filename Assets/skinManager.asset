@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18db355f0cf54714299f33f68daa1457, type: 3}
+  m_Name: skinManager
+  m_EditorClassIdentifier: 
+  skins:
+  - name: Chocolate
+    description: 
+    cost: 0
+    materials:
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+  - name: Apricot
+    description: 
+    cost: 10
+    materials:
+    - {fileID: 2100000, guid: d0771e218df3a974ca7576eb97872372, type: 2}
+    - {fileID: 2100000, guid: d0771e218df3a974ca7576eb97872372, type: 2}
+    - {fileID: 2100000, guid: d0771e218df3a974ca7576eb97872372, type: 2}
+    - {fileID: 2100000, guid: d0771e218df3a974ca7576eb97872372, type: 2}
+    - {fileID: 2100000, guid: d0771e218df3a974ca7576eb97872372, type: 2}
+    - {fileID: 2100000, guid: d0771e218df3a974ca7576eb97872372, type: 2}
+  - name: Black
+    description: 
+    cost: 10
+    materials:
+    - {fileID: 2100000, guid: 52b7cae9c42b1a841bd38423c5d58ace, type: 2}
+    - {fileID: 2100000, guid: 52b7cae9c42b1a841bd38423c5d58ace, type: 2}
+    - {fileID: 2100000, guid: 52b7cae9c42b1a841bd38423c5d58ace, type: 2}
+    - {fileID: 2100000, guid: 52b7cae9c42b1a841bd38423c5d58ace, type: 2}
+    - {fileID: 2100000, guid: 52b7cae9c42b1a841bd38423c5d58ace, type: 2}
+    - {fileID: 2100000, guid: 52b7cae9c42b1a841bd38423c5d58ace, type: 2}
+  - name: Blue
+    description: 
+    cost: 20
+    materials:
+    - {fileID: 2100000, guid: c3380c1483ee63740b9d861309f2d3b0, type: 2}
+    - {fileID: 2100000, guid: c3380c1483ee63740b9d861309f2d3b0, type: 2}
+    - {fileID: 2100000, guid: c3380c1483ee63740b9d861309f2d3b0, type: 2}
+    - {fileID: 2100000, guid: c3380c1483ee63740b9d861309f2d3b0, type: 2}
+    - {fileID: 2100000, guid: c3380c1483ee63740b9d861309f2d3b0, type: 2}
+    - {fileID: 2100000, guid: c3380c1483ee63740b9d861309f2d3b0, type: 2}
+  - name: Rainbow
+    description: 
+    cost: 30
+    materials:
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: c74b536ddb9d67749bdae8d818253d31, type: 2}
+  - name: Cosmos
+    description: 
+    cost: 50
+    materials:
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: 6e9cce3c9df3eeb42a7c972f4eaffe66, type: 2}
+    - {fileID: 2100000, guid: bdb33e9fce736fe4ab1bfaa48c282ae9, type: 2}
+  - name: Static
+    description: 
+    cost: 50
+    materials:
+    - {fileID: -876546973899608171, guid: 43ac1248b7dbe9a499604ce4afd17184, type: 3}
+    - {fileID: -876546973899608171, guid: 43ac1248b7dbe9a499604ce4afd17184, type: 3}
+    - {fileID: -876546973899608171, guid: 43ac1248b7dbe9a499604ce4afd17184, type: 3}
+    - {fileID: -876546973899608171, guid: 43ac1248b7dbe9a499604ce4afd17184, type: 3}
+    - {fileID: -876546973899608171, guid: 43ac1248b7dbe9a499604ce4afd17184, type: 3}
+    - {fileID: -876546973899608171, guid: 43ac1248b7dbe9a499604ce4afd17184, type: 3}
+  - name: Patrick
+    description: 
+    cost: 100
+    materials:
+    - {fileID: 2100000, guid: ffa7294039937d84fa0b05531309231f, type: 2}
+    - {fileID: 2100000, guid: ffa7294039937d84fa0b05531309231f, type: 2}
+    - {fileID: 2100000, guid: ffa7294039937d84fa0b05531309231f, type: 2}
+    - {fileID: 2100000, guid: ffa7294039937d84fa0b05531309231f, type: 2}
+    - {fileID: 2100000, guid: ffa7294039937d84fa0b05531309231f, type: 2}
+    - {fileID: 2100000, guid: ffa7294039937d84fa0b05531309231f, type: 2}
+  - name: Gold
+    description: 
+    cost: 197
+    materials:
+    - {fileID: 2100000, guid: c68040859afa5f34e9c4f0d01aa60b4c, type: 2}
+    - {fileID: 2100000, guid: c68040859afa5f34e9c4f0d01aa60b4c, type: 2}
+    - {fileID: 2100000, guid: c68040859afa5f34e9c4f0d01aa60b4c, type: 2}
+    - {fileID: 2100000, guid: c68040859afa5f34e9c4f0d01aa60b4c, type: 2}
+    - {fileID: 2100000, guid: c68040859afa5f34e9c4f0d01aa60b4c, type: 2}
+    - {fileID: 2100000, guid: c68040859afa5f34e9c4f0d01aa60b4c, type: 2}
+  - name: Golden Wind
+    description: 
+    cost: 500
+    materials:
+    - {fileID: 2100000, guid: 945109750ceff2e42a036b4c84da2d16, type: 2}
+    - {fileID: 2100000, guid: 945109750ceff2e42a036b4c84da2d16, type: 2}
+    - {fileID: 2100000, guid: 945109750ceff2e42a036b4c84da2d16, type: 2}
+    - {fileID: 2100000, guid: 945109750ceff2e42a036b4c84da2d16, type: 2}
+    - {fileID: 2100000, guid: 945109750ceff2e42a036b4c84da2d16, type: 2}
+    - {fileID: 2100000, guid: 945109750ceff2e42a036b4c84da2d16, type: 2}

@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class RecursiveBacktrackingStrategy : IMazeGenerationStrategy
 {
     public (Cell[,], Stack<Vector2Int>) Generate(ushort width, ushort height, int seed = -1)
     {
-        var randomInt16 = new System.Random().Next(short.MinValue, short.MaxValue); // for stashing the seed
+        var randomInt16 = new System.Random().Next(ushort.MinValue, ushort.MaxValue); // for stashing the seed
         var randomSeed = seed == -1 ? new System.Random(randomInt16) : new System.Random(seed);
-        
+
         var maze = new Cell[width, height];
         const Cell initial = Cell.RightWall | Cell.LowerWall;
 
@@ -51,7 +52,6 @@ public class RecursiveBacktrackingStrategy : IMazeGenerationStrategy
         var pathStack = new Stack<Vector2Int>();
         var pathPosition = new Vector2Int { x = width - 1, y = 0 };
 
-        // terug in de parent map om de path te reconstructen
         while (pathPosition != new Vector2Int { x = 0, y = height - 1 })
         {
             pathStack.Push(pathPosition);
@@ -59,7 +59,7 @@ public class RecursiveBacktrackingStrategy : IMazeGenerationStrategy
         }
 
         pathStack.Push(new Vector2Int { x = 0, y = height - 1 });
-
+        
         return (maze, pathStack);
     }
 }

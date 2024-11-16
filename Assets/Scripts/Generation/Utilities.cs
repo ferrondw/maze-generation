@@ -49,8 +49,11 @@ public static class Utilities
         return neighbours;
     }
 
-    public static byte[] MazeToBytes(Cell[,] maze, ushort width, ushort height)
+    public static byte[] MazeToBytes(Cell[,] maze)
     {
+        var width = maze.GetLength(0);
+        var height = maze.GetLength(1);
+        
         var sb = new StringBuilder();
         sb.Append(Convert.ToString(width, 2).PadLeft(16, '0'));
         sb.Append(Convert.ToString(height, 2).PadLeft(16, '0'));
@@ -77,6 +80,8 @@ public static class Utilities
         {
             binaryString = binaryString.PadRight(binaryString.Length + padding, '0');
         }
+        
+        Debug.Log(binaryString);
 
         var numBytes = binaryString.Length / 8;
         var byteArray = new byte[numBytes];
