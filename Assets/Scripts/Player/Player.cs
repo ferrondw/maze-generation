@@ -73,27 +73,6 @@ public class Player : MonoBehaviour
         HandleMobile();
     }
 
-    [MenuItem("RAAHHH/Screenshot")]
-    public static void Screenshot()
-    {
-        string directory = @"Z:\Data\Downloads\RAAHHH";
-
-        // Ensure the directory exists
-        if (!Directory.Exists(directory))
-        {
-            Directory.CreateDirectory(directory);
-        }
-
-        // Create a filename with the current date and time
-        string timestamp = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        string filepath = Path.Combine(directory, $"Screenshot_{timestamp}.png");
-
-        // Save the screenshot
-        ScreenCapture.CaptureScreenshot(filepath);
-
-        Debug.Log($"Screenshot saved to: {filepath}");
-    }
-
     private void MoveToGrid(Vector2Int pos)
     {
         var desiredPosition = new Vector3(pos.x, 0, pos.y);
